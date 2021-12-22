@@ -38,6 +38,7 @@ class Command(BaseCommand):
                 Name=fake.bs(),
                 Street=random.choice(streets),
                 Number=fake.building_number(),
+                Comment=fake.catch_phrase(),
             )
             stores_created += 1
             for DayOfWeek in range(0, 7):

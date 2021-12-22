@@ -25,6 +25,7 @@ class Store(models.Model):
     Street = models.ForeignKey(Street, on_delete=models.CASCADE, related_name='stores')
     Name = models.CharField(max_length=200)
     Number = models.CharField(max_length=10)
+    Comment = models.TextField(blank=True)
 
     def __str__(self):
         return f"{self.Street.Town.Name}, {self.Street.Name} {self.Number}, {self.Name}"
