@@ -3,6 +3,7 @@ from faker import Faker
 import random
 from store.models import Town, Street, Store, Schedule
 from datetime import time
+from django.db import IntegrityError
 
 
 class Command(BaseCommand):
@@ -18,16 +19,22 @@ class Command(BaseCommand):
 
         towns_created = 0
         while towns_created < 10 or (towns_created < 300 and random_bool()):
-            Town.objects.create(Name=fake.city())
-            towns_created += 1
+            try:
+                Town.objects.create(Name=fake.city())
+                towns_created += 1
+            except IntegrityError:
+                continue
         self.stdout.write(f'Created {towns_created} random towns')
 
         towns = Town.objects.all()
         streets_created = 0
 
         while streets_created < 30 or (streets_created < 900 and random_bool()):
-            Street.objects.create(Name=fake.street_name(), Town=random.choice(towns))
-            streets_created += 1
+            try:
+                Street.objects.create(Name=fake.street_name(), Town=random.choice(towns))
+                streets_created += 1
+            except IntegrityError:
+                continue
         self.stdout.write(f'Created {streets_created} random streets')
 
         streets = Street.objects.all()
@@ -40,7 +47,8 @@ class Command(BaseCommand):
                 Number=fake.building_number(),
                 Comment=fake.catch_phrase(),
             )
-            stores_created += 1
+            if store:
+                stores_created += 1
             for DayOfWeek in range(0, 7):
                 if random_bool():
                     Schedule.objects.create(

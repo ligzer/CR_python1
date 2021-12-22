@@ -6,6 +6,7 @@ from .models import Store, Schedule
 from django.db.models import Max
 from django.contrib.auth.models import User
 
+
 class CRUD_Tests(TestCase):
     """
     """

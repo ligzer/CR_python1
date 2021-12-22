@@ -1,12 +1,10 @@
 from django.db import models
-
-# Create your models here.
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Town(models.Model):
     """Town is a town"""
-    # TODO: Make Name Unique
-    Name = models.CharField(max_length=200)
+    Name = models.CharField(max_length=200, unique=True)
 
     def __str__(self):
         return self.Name
@@ -14,7 +12,10 @@ class Town(models.Model):
 
 class Street(models.Model):
     """Street is a street of a town"""
-    # TODO: Make Unique Together
+
+    class Meta:
+        unique_together = [['Town', 'Name']]
+
     Town = models.ForeignKey(Town, on_delete=models.CASCADE, related_name='streets')
     Name = models.CharField(max_length=200)
 
@@ -38,8 +39,5 @@ class Schedule(models.Model):
     OpenTime = models.TimeField()
     CloseTime = models.TimeField()
     # TODO: Add check of unique DayOfWeek for one Store
-    # TODO: Add check 0<=DayOfWeek<=7
-    DayOfWeek = models.IntegerField()
+    DayOfWeek = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(7)])
     Store = models.ForeignKey(Store, on_delete=models.CASCADE, related_name='Schedule')
-
-
