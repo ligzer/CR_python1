@@ -32,7 +32,6 @@ class Store(models.Model):
 
 class Schedule(models.Model):
     """Schedule of a store on a street in a town"""
-    # TODO: Add check CloseTime > OpenTime
     OpenTime = models.TimeField()
     CloseTime = models.TimeField()
     # TODO: Add check of unique DayOfWeek for one Store

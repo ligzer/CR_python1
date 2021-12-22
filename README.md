@@ -14,6 +14,13 @@
 
 `docker-compose exec web python3 manage.py createsuperuser`
 
+Для того чтобы авторизоваться нужно зайти на http://localhost:8000/admin
+
+API находится на http://localhost:8000/api
+
+Создание фейковых данных:
+
+`docker-compose exec web python3 manage.py createmockdata`
 
 ###Описание
 ####Функциональность
@@ -35,3 +42,5 @@
 * Обратить внимание на проектирование таблиц базы данных. Вероятно, здесь будет не одна таблица и будут применимы внешние ключи (Foreign Key).
 
 ### 
+
+[http://localhost:8000/admin]: http://localhost:8000/admin
