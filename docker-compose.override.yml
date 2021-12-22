@@ -1,0 +1,13 @@
+version: '3.5'
+
+services:
+  db:
+    volumes:
+      - ./docker_dev_data/pgdata:/var/lib/postgresql/data
+  web:
+    working_dir: /code/backend
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
