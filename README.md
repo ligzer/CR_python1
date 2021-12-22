@@ -10,6 +10,11 @@
 
 `docker-compose exec web python3 manage.py migrate`
 
+Создание суперпользователя:
+
+`docker-compose exec web python3 manage.py createsuperuser`
+
+
 ###Описание
 ####Функциональность
 * Получение всех городов из базы данных (использовать mock-данные)
