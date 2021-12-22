@@ -5,6 +5,7 @@ from django.db import models
 
 class Town(models.Model):
     """Town is a town"""
+    # TODO: Make Name Unique
     Name = models.CharField(max_length=200)
 
     def __str__(self):
@@ -13,6 +14,7 @@ class Town(models.Model):
 
 class Street(models.Model):
     """Street is a street of a town"""
+    # TODO: Make Unique Together
     Town = models.ForeignKey(Town, on_delete=models.CASCADE, related_name='streets')
     Name = models.CharField(max_length=200)
 

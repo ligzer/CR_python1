@@ -25,10 +25,12 @@ class ScheduleSerializer(serializers.ModelSerializer):
 
 class StoreSerializer(serializers.ModelSerializer):
     Schedule = ScheduleSerializer(many=True, read_only=True, source='schedule')
+    Town = serializers.CharField(source='Street.Town.Name')
+    Street = serializers.CharField(source='Street.Name')
 
     class Meta:
         model = Store
-        fields = ('id', 'Name', 'Comment' , 'Number', 'Street', 'Schedule')
+        fields = ('id', 'Name', 'Comment', 'Town', 'Street', 'Number', 'Street', 'Schedule')
 
 
 
