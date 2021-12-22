@@ -22,6 +22,11 @@ API находится на http://localhost:8000/api
 
 `docker-compose exec web python3 manage.py createmockdata`
 
+
+Запуск тестов:
+
+`docker-compose exec web python3 manage.py test --keepdb`
+
 ###Описание
 ####Функциональность
 * Получение всех городов из базы данных (использовать mock-данные)
@@ -41,6 +46,3 @@ API находится на http://localhost:8000/api
 * Работа с Docker будет большим плюсом
 * Обратить внимание на проектирование таблиц базы данных. Вероятно, здесь будет не одна таблица и будут применимы внешние ключи (Foreign Key).
 
-### 
-
-[http://localhost:8000/admin]: http://localhost:8000/admin

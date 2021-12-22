@@ -40,6 +40,6 @@ class Schedule(models.Model):
     # TODO: Add check of unique DayOfWeek for one Store
     # TODO: Add check 0<=DayOfWeek<=7
     DayOfWeek = models.IntegerField()
-    Store = models.ForeignKey(Store, on_delete=models.CASCADE, related_name='schedule')
+    Store = models.ForeignKey(Store, on_delete=models.CASCADE, related_name='Schedule')
 
 
